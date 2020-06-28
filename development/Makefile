@@ -4,15 +4,22 @@ clean-init:
 
 install:
 	@cd ./frappe-bench && \
-	  bench config restart_supervisor_on_update off && \
 	  bench set-mariadb-host mariadb && \
 	  bench set-redis-cache-host redis-cache:6379 && \
 	  bench set-redis-queue-host redis-queue:6379 && \
 	  bench set-redis-socketio-host redis-socketio:6379 && \
-	  bench new-site mysite.localhost --mariadb-root-password 123 --admin-password admin --no-mariadb-socket && \
+	  bench new-site mysite.localhost --mariadb-root-password 123 --admin-password admin --no-mariadb-socket
+
+erpnext:
+	@cd ./frappe-bench && \
 	  bench get-app --branch version-12 erpnext https://github.com/frappe/erpnext.git && \
 	  bench --site mysite.localhost install-app erpnext
 
 drop:
 	@cd ./frappe-bench && \
 	  bench drop-site mysite.localhost --force
+
+dev_mode:
+	@cd ./frappe-bench && \
+	  bench  set-config developer_mode 1 -g && \
+	  bench clear-cache
