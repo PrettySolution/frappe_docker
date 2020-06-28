@@ -60,7 +60,9 @@ It takes care of complete setup to develop with Frappe/ERPNext and Bench, Includ
 - Clone the repo, cd into it
 - run `make start` if you are doing first time or `make clean` for clean installation
 - run `make tty` - you are inside the dev container
-- run `make clean-init`
-- run `make install`
+- run `make init`
+- run `make set-config`
+- run `make new-site`
+- run `make get-erpnext`
 - run `bench start` inside frappe-bench folder
 - Access your dev sever at [mysite.localhost:8000](http://mysite.localhost:8000) (Administrator\admin)
