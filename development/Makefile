@@ -11,22 +11,29 @@ set-config:
 
 new-site:
 	@cd ./frappe-bench && \
-	  bench new-site mysite.localhost --mariadb-root-password 123 --admin-password admin --no-mariadb-socket
+	  bench new-site up-server.cf --mariadb-root-password 123 --admin-password admin --no-mariadb-socket
 
 get-erpnext:
 	@cd ./frappe-bench && \
 	  bench get-app --branch version-12 erpnext https://github.com/frappe/erpnext.git && \
-	  bench --site mysite.localhost install-app erpnext
+	  bench --site up-server.cf install-app erpnext
+
+get-library:
+	@cd ./frappe-bench && \
+	  bench new-app library_management && \
+	  bench --site up-server.cf install-app library_management
 
 dev_mode:
 	@cd ./frappe-bench && \
 	  bench  set-config developer_mode 1 -g && \
 	  bench clear-cache
 
-frappe_only: init set-config new-site dev_mode
+library: init set-config new-site get-library dev_mode
+
+frappe_only: init set-config new-site get-library dev_mode
 
 all: init set-config new-site get-erpnext dev_mode
 
 drop:
 	@cd ./frappe-bench && \
-	  bench drop-site mysite.localhost --force
+	  bench drop-site up-server.cf --force
