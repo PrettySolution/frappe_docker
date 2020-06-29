@@ -66,3 +66,4 @@ It takes care of complete setup to develop with Frappe/ERPNext and Bench, Includ
 - run `make get-erpnext`
 - run `bench start` inside frappe-bench folder
 - Access your dev sever at [mysite.localhost:8000](http://mysite.localhost:8000) (Administrator\admin)
+0ce9b09a893482d9e6e6a17ae779155a34f27678

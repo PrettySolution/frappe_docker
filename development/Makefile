@@ -20,7 +20,7 @@ get-erpnext:
 
 get-library:
 	@cd ./frappe-bench && \
-	  bench new-app library_management && \
+	  bench get-app --branch master library_management https://github.com/PrettySolution/library_management && \
 	  bench --site up-server.cf install-app library_management
 
 dev_mode:
@@ -28,11 +28,11 @@ dev_mode:
 	  bench  set-config developer_mode 1 -g && \
 	  bench clear-cache
 
+frappe_only: init set-config new-site dev_mode
+
 library: init set-config new-site get-library dev_mode
 
-frappe_only: init set-config new-site get-library dev_mode
-
-all: init set-config new-site get-erpnext dev_mode
+erpnext: init set-config new-site get-erpnext dev_mode
 
 drop:
 	@cd ./frappe-bench && \
