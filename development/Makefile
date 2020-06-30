@@ -1,6 +1,6 @@
 init:
 	@sudo rm -R frappe-bench -f
-	@bench init --skip-redis-config-generation --frappe-branch version-12 frappe-bench
+	@bench init --skip-redis-config-generation --frappe-branch develop frappe-bench
 
 set-config:
 	@cd ./frappe-bench && \
